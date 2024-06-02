@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -100,14 +99,12 @@
                 margin-bottom: 10px;
                 position: relative;
             }
-
-            body {
+            body{
                 padding-right: 20px;
             }
         }
     </style>
 </head>
-
 <body>
     <div id="top">
         <h1>Welcome to Salma's WAPH Project 1</h1>
@@ -120,32 +117,31 @@
         </div>
 
         <div id="sidebar">
+            <style>
+                #sidebar {
+                    right: 30px; /* Adjusted */
+                }
+            </style>
+            
             <h2>Here's a joke for your visit!</h2>
             <div id="jokeSection">
                 <p>Here's a joke!</p>
             </div>
 
             <div id="digital-clock"></div>
-            <script>
-                function displayTime() {
-                    document.getElementById('digital-clock').innerHTML = "Current time: " + new Date();
-                }
-                setInterval(displayTime, 500);
-            </script>
-
-            <canvas id="analog-clock" width="150" height="150" style="background-color:purple"></canvas>
+            <canvas id="analog-clock" width="150" height="150"></canvas>
             <script src="https://waph-uc.github.io/clock.js"></script>
         </div>
-
+        
         <div id="page1" class="page active">
             <h2>About Me</h2>
-
-            <p>My name is Salma Mohammad. I am currently a junior Computer Science student at University of Cincinnati. You can contact me <span id="email" onclick="showhideEmail()" style="color: lightgreen; text-decoration: underline;">here!</span></p>
+            
+            <p>My name is Salma Mohammad. I am currently a junior Computer Science student at University of Cincinnati. You can contact me <span id="email" onclick="showhideEmail()" style="color: green; text-decoration: underline;">here!</span></p>
             <script src="email.js"></script>
-
+            
             <p>You can download my resume below for more information about my experiences and skills.</p>
             <img src="headshot.jpg" width="200" height="200" style="display: block; margin: 0 auto;">
-
+            
             <div style="text-align: center;">
                 <a href="Salma Resume_Feb2024.pdf" target="_blank">Download Salma's Resume</a>
             </div>
@@ -160,26 +156,7 @@
             <p>This is the content of page 3.</p>
         </div>
     </div>
+   
 
     <script>
-        function showPage(pageId) {
-            // Hide all pages
-            var pages = document.getElementsByClassName('page');
-            for (var i = 0; i < pages.length; i++) {
-                pages[i].classList.remove('active');
-            }
-
-            // Show the selected page
-            document.getElementById(pageId).classList.add('active');
-
-            // Mark the selected menu item as active
-            var menuItems = document.getElementsByClassName('menuitem');
-            for (var i = 0; i < menuItems.length; i++) {
-                menuItems[i].classList.remove('active');
-            }
-            document.querySelector('.menuitem[data-page="' + pageId + '"]').classList.add('active');
-        }
-    </script>
-</body>
-
-</html>
+        function showPage(pageId)
