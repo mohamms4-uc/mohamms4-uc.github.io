@@ -141,9 +141,9 @@ crossorigin="anonymous"></script>
             <div id="digital-clock" style="color:lightgreen"></div>
            <canvas id="analog-clock" width="150" height="150" style="background-color: lightgreen; color: white;"></canvas>
            <script src="https://waph-uc.github.io/clock.js"></script>
-        
-
-
+          <div id="weather"></div>
+            
+    
 <script>
     // Draw out clock and clock hands
     
@@ -186,7 +186,38 @@ crossorigin="anonymous"></script>
             <p>This is the content of page 3.</p>
         </div>
     </div>
-   
+
+ <script>
+        // Your Weatherbit API key
+        const apiKey = "bd12cddefc674579a2209b655daba07a";
+
+        // Latitude and Longitude of your location
+        const lat = "35.7796";
+        const lon = "-78.6382";
+
+        // API endpoint
+        const apiUrl = `https://api.weatherbit.io/v2.0/current`;
+
+        // Fetch weather data
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                // Extract relevant weather information
+                const { temp, weather } = data.data[0];
+
+                // Display weather information
+                document.getElementById("weather").innerHTML = `
+                    <p>Temperature: ${temp}°C</p>
+                    <p>Weather: ${weather.description}</p>
+                `;
+            })
+            .catch(error => {
+                console.error("Error fetching weather data:", error);
+            });
+    </script>
+
+
+    
     <script>
         function showPage(pageId) {
             // Hide all pages
