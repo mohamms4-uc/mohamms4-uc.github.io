@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -99,97 +100,86 @@
                 margin-bottom: 10px;
                 position: relative;
             }
-            body{
+
+            body {
                 padding-right: 20px;
             }
         }
     </style>
 </head>
+
 <body>
-<div id="top">
-    <h1>Welcome to Salma's WAPH Project 1</h1>
-</div>
-<div class="container">
-    <div id="main">
-        <div class="menuitem" onclick="showPage('page1')">About Me</div>
-        <div class="menuitem" onclick="showPage('page2')">Task 2</div>
-        <div class="menuitem" onclick="showPage('page3')">Task 3</div>
+    <div id="top">
+        <h1>Welcome to Salma's WAPH Project 1</h1>
     </div>
-
-    <div id="sidebar">
-        <h2>Here's a joke for your visit!</h2>
-        <div id="jokeSection">
-            <p>Loading joke...</p>
+    <div class="container">
+        <div id="main">
+            <div class="menuitem" onclick="showPage('page1')">About Me</div>
+            <div class="menuitem" onclick="showPage('page2')">Task 2</div>
+            <div class="menuitem" onclick="showPage('page3')">Task 3</div>
         </div>
 
-        <div id="digital-clock"></div>
-        <script>
-            function displayTime(){
-                document.getElementById('digital-clock').innerHTML = "Current time: " + new Date();
+        <div id="sidebar">
+            <h2>Here's a joke for your visit!</h2>
+            <div id="jokeSection">
+                <p>Here's a joke!</p>
+            </div>
+
+            <div id="digital-clock"></div>
+            <script>
+                function displayTime() {
+                    document.getElementById('digital-clock').innerHTML = "Current time: " + new Date();
+                }
+                setInterval(displayTime, 500);
+            </script>
+
+            <canvas id="analog-clock" width="150" height="150" style="background-color:purple"></canvas>
+            <script src="https://waph-uc.github.io/clock.js"></script>
+        </div>
+
+        <div id="page1" class="page active">
+            <h2>About Me</h2>
+
+            <p>My name is Salma Mohammad. I am currently a junior Computer Science student at University of Cincinnati. You can contact me <span id="email" onclick="showhideEmail()" style="color: lightgreen; text-decoration: underline;">here!</span></p>
+            <script src="email.js"></script>
+
+            <p>You can download my resume below for more information about my experiences and skills.</p>
+            <img src="headshot.jpg" width="200" height="200" style="display: block; margin: 0 auto;">
+
+            <div style="text-align: center;">
+                <a href="Salma Resume_Feb2024.pdf" target="_blank">Download Salma's Resume</a>
+            </div>
+        </div>
+
+        <div id="page2" class="page">
+            <h2>Page 2 Content</h2>
+            <p>This is the content of page 2.</p>
+        </div>
+        <div id="page3" class="page">
+            <h2>Page 3 Content</h2>
+            <p>This is the content of page 3.</p>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            var pages = document.getElementsByClassName('page');
+            for (var i = 0; i < pages.length; i++) {
+                pages[i].classList.remove('active');
             }
-            setInterval(displayTime, 500);
-        </script>
 
-        <canvas id="analog-clock" width="150" height="150" style="background-color:green; color:white"></canvas>
-    </div>
+            // Show the selected page
+            document.getElementById(pageId).classList.add('active');
 
-    <div id="page1" class="page active">
-        <h2>About Me</h2>
-
-        <p>My name is Salma Mohammad. I am currently a junior Computer Science student at University of Cincinnati. You can contact me <span id="email" onclick="showhideEmail()" style="color: lightgreen; text-decoration: underline;">here!</span></p>
-        <script src="email.js"></script>
-
-        <p>You can download my resume below for more information about my experiences and skills.</p>
-        <img src="headshot.jpg" width="200" height="200" style="display: block; margin: 0 auto;">
-
-        <div style="text-align: center;">
-            <a href="Salma Resume_Feb2024.pdf" target="_blank">Download Salma's Resume</a>
-        </div>
-    </div>
-
-    <div id="page2" class="page">
-        <h2>Page 2 Content</h2>
-        <p>This is the content of page 2.</p>
-    </div>
-    <div id="page3" class="page">
-        <h2>Page 3 Content</h2>
-        <p>This is the content of page 3.</p>
-    </div>
-</div>
-
-<script>
-    function showPage(pageId) {
-        // Hide all pages
-        var pages = document.getElementsByClassName('page');
-        for (var i = 0; i < pages.length; i++) {
-            pages[i].classList.remove('active');
+            // Mark the selected menu item as active
+            var menuItems = document.getElementsByClassName('menuitem');
+            for (var i = 0; i < menuItems.length; i++) {
+                menuItems[i].classList.remove('active');
+            }
+            document.querySelector('.menuitem[data-page="' + pageId + '"]').classList.add('active');
         }
-
-        // Show the selected page
-        document.getElementById(pageId).classList.add('active');
-
-        // Mark the selected menu item as active
-        var menuItems = document.getElementsByClassName('menuitem');
-        for (var i = 0; i < menuItems.length; i++) {
-            menuItems[i].classList.remove('active');
-        }
-        document.querySelector('.menuitem[data-page="' + pageId + '"]').classList.add('active');
-    }
-
-    // Function to fetch joke from the API
-    function fetchJoke() {
-        $.get("https://v2.jokeapi.dev/joke/PRogramming?type=single", function(result){
-            $("#jokeSection").html("<p>" + result.joke + "</p>");
-        });
-    }
-
-    // Call the function to fetch the joke when the page loads
-    $(document).ready(function() {
-        fetchJoke();
-    });
-</script>
-
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<script src="https://waph-uc.github.io/clock.js"></script>
+    </script>
 </body>
+
 </html>
