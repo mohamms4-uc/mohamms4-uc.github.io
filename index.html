@@ -196,7 +196,7 @@ crossorigin="anonymous"></script>
         const lon = "-78.6382";
 
         // Fetch weather data
-        fetch("https://api.weatherbit.io/v2.0/current")
+        fetch("https://api.weatherbit.io/v2.0/current?lat=35.7796&lon=-78.6382&key=bd12cddefc674579a2209b655daba07a&include=minutely")
             .then(response => response.json())
             .then(data => {
                 // Extract relevant weather information
