@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+    
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+crossorigin="anonymous"></script>
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -111,13 +116,30 @@
             <div class="menuitem" onclick="showPage('page2')">Task 2</div>
             <div class="menuitem" onclick="showPage('page3')">Task 3</div>
         </div>
+
+<script>
+    // Function to fetch joke from the API
+    function fetchJoke() {
+        $.get("https://v2.jokeapi.dev/joke/PRogramming?type=single", function(result){
+            $("#jokeSection").html("<p>" + result.joke + "</p>");
+        });
+    }
+
+    // Call the function to fetch the joke when the page loads
+    $(document).ready(function() {
+        fetchJoke();
+    });
+</script>
+
         <div id="sidebar">
-            <p>This is for a project - update 3</p>
+            <div id="jokeSection">
+                <p>Here's a joke!</p>
         </div>
         <div id="page1" class="page active">
             <h2>About Me</h2>
-            <p>My name is Salma Mohammad. I am currently a junior Computer Science student at University of Cincinnati.</p>
+            <p>My name is Salma Mohammad. I am currently a junior Computer Science student at University of Cincinnati. You can contact me at mohamms4@mail.uc.edu. You can see my resume below. </p>
             <img src="headshot.jpg" width="200" height="200" style="display: block; margin: 0 auto;">
+            <p style="text-align: center;"> enter resume </p>
         </div>
         <div id="page2" class="page">
             <h2>Page 2 Content</h2>
