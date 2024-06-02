@@ -119,7 +119,7 @@
     <div id="sidebar">
         <h2>Here's a joke for your visit!</h2>
         <div id="jokeSection">
-            <p>Here's a joke!</p>
+            <p>Loading joke...</p>
         </div>
 
         <div id="digital-clock"></div>
@@ -175,7 +175,21 @@
         }
         document.querySelector('.menuitem[data-page="' + pageId + '"]').classList.add('active');
     }
+
+    // Function to fetch joke from the API
+    function fetchJoke() {
+        $.get("https://v2.jokeapi.dev/joke/PRogramming?type=single", function(result){
+            $("#jokeSection").html("<p>" + result.joke + "</p>");
+        });
+    }
+
+    // Call the function to fetch the joke when the page loads
+    $(document).ready(function() {
+        fetchJoke();
+    });
 </script>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="https://waph-uc.github.io/clock.js"></script>
 </body>
 </html>
