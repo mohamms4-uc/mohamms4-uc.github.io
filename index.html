@@ -207,40 +207,39 @@ $(document).ready(function() {
         </div>
     </div>
 
- <script>
+  <script>
         // Your Weatherbit API key
         const apiKey = "bd12cddefc674579a2209b655daba07a";
 
-        // // Latitude and Longitude of your location
-        // const lat = "39.1031";
-        // const lon = "-84.5120";
+        // Function to fetch weather data
+        function fetchWeather(lat, lon) {
+            fetch(`https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lon}&key=${apiKey}&include=minutely`)
+                .then(response => response.json())
+                .then(data => {
+                    // Extract relevant weather information
+                    const { temp, weather, humidity, wind_spd, cloudcover, city_name, country_code } = data.data[0];
+                    
+                    // Convert temperature to Fahrenheit
+                    const tempFahrenheit = (temp * 9/5) + 32;
+                    
+                    // Get the weather icon URL based on the weather description
+                    const iconUrl = `https://www.weatherbit.io/static/img/icons/${weather.icon}.png`;
 
-        // Fetch weather data
-        fetch("https://api.weatherbit.io/v2.0/current?lat=39.1031&lon=-84.5120&key=bd12cddefc674579a2209b655daba07a&include=minutely")
-            .then(response => response.json())
-            .then(data => {
-                // Extract relevant weather information
-                 const { temp, weather, wind_spd, city_name, country_code } = data.data[0];
-                
-                const tempFahrenheit = (temp * 9/5) + 32;
-    
-                // Get the weather icon URL based on the weather description
-                const iconUrl = `https://www.weatherbit.io/static/img/icons/${weather.icon}.png`;
-
-                // Display weather information
-                document.getElementById("weather").innerHTML = `
-
-                    <p>Location: ${city_name}, ${country_code}</p>
-                    <p>Temperature: ${tempFahrenheit.toFixed(2)}°F</p>
-                    <p>Weather: ${weather.description}</p>
-                    <p>Wind Speed: ${wind_spd} m/s</p>
-                    <img src="${iconUrl}" alt="Weather Icon">
-                `;
-            })
-            .catch(error => {
-                console.error("Error fetching weather data:", error);
-            });
-  }
+                    // Display weather information
+                    document.getElementById("weather").innerHTML = `
+                        <p>Location: ${city_name}, ${country_code}</p>
+                        <p>Temperature: ${tempFahrenheit.toFixed(2)}°F</p>
+                        <p>Weather: ${weather.description}</p>
+                        <p>Humidity: ${humidity}%</p>
+                        <p>Wind Speed: ${wind_spd} m/s</p>
+                        <p>Cloud Cover: ${cloudcover}%</p>
+                        <img src="${iconUrl}" alt="Weather Icon">
+                    `;
+                })
+                .catch(error => {
+                    console.error("Error fetching weather data:", error);
+                });
+        }
 
         // Check if Geolocation is available
         if (navigator.geolocation) {
@@ -254,27 +253,6 @@ $(document).ready(function() {
             });
         } else {
             document.getElementById("weather").innerHTML = "Geolocation is not supported by your browser.";
-        }
-     
-    </script>
-
-
-    
-    <script>
-        function showPage(pageId) {
-            // Hide all pages
-            var pages = document.getElementsByClassName('page');
-            for (var i = 0; i < pages.length; i++) {
-                pages[i].classList.remove('active');
-            }
-            // Show the selected page
-            document.getElementById(pageId).classList.add('active');
-            // Mark the selected menu item as active
-            var menuItems = document.getElementsByClassName('menuitem');
-            for (var i = 0; i < menuItems.length; i++) {
-                menuItems[i].classList.remove('active');
-            }
-            document.querySelector('.menuitem[data-page="' + pageId + '"]').classList.add('active');
         }
     </script>
 </body>
