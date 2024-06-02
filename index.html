@@ -213,18 +213,17 @@ $(document).ready(function() {
 
         // Latitude and Longitude of your location
         const lat = "39.1031";
-        const lon = "84.5120";
+        const lon = "-84.5120";
 
         // Fetch weather data
-        fetch("https://api.weatherbit.io/v2.0/current?lat=39.1031&lon=84.5120&key=bd12cddefc674579a2209b655daba07a&include=minutely")
+        fetch("https://api.weatherbit.io/v2.0/current?lat=39.1031&lon=-84.5120&key=bd12cddefc674579a2209b655daba07a&include=minutely")
             .then(response => response.json())
             .then(data => {
                 // Extract relevant weather information
-                 const { temp, weather, humidity, wind_spd, cloudcover } = data.data[0];
+                 const { temp, weather, humidity, wind_spd, cloudcover, city_name, country_code } = data.data[0];
                 
                 const tempFahrenheit = (temp * 9/5) + 32;
-                // Extract location information
-                const { city_name, country_code } = data.data[0].city_name;
+    
                 // Get the weather icon URL based on the weather description
                 const iconUrl = `https://www.weatherbit.io/static/img/icons/${weather.icon}.png`;
 
