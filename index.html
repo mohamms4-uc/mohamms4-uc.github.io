@@ -153,10 +153,7 @@ crossorigin="anonymous"></script>
         fetchJoke();
     });
 
-     function displayTime(){
-            document.getElementById('digital-clock').innerHTML = "Current time: " + new Date();
-        }
-        setInterval(displayTime, 500);
+
     
 </script>
 
@@ -165,8 +162,7 @@ crossorigin="anonymous"></script>
 
          <style>
             #sidebar {
-                right: 30px; /* Adjusted */
-                /* Remaining styles unchanged */
+                right: 30px; 
             }
         </style>
             
@@ -175,9 +171,16 @@ crossorigin="anonymous"></script>
                 <p>Here's a joke!</p>
             </div>
 
-            <div id="digital-clock"></div>
+           <div id="digital-clock"></div>
+        
+    <script>
+        function displayTime(){
+            document.getElementById('digital-clock').innerHTML = "Current time: " + new Date();
+        }
+        setInterval(displayTime, 500);
+    </script>
     
-    <canvas id="analog-clock" width="150" height="150"></canvas>
+    <canvas id="analog-clock" width="150" height="150" style="background-color:green font:white"></canvas>
     <script src="https://waph-uc.github.io/clock.js"></script>
     
         </div>
