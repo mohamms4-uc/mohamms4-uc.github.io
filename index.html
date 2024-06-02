@@ -129,20 +129,37 @@ crossorigin="anonymous"></script>
     $(document).ready(function() {
         fetchJoke();
     });
+
+     function displayTime(){
+            document.getElementById('digital-clock').innerHTML = "Current time: " + new Date();
+        }
+        setInterval(displayTime, 500);
+    
 </script>
 
+
         <div id="sidebar">
+            <h2>Here's a joke for your visit!</h2>
             <div id="jokeSection">
                 <p>Here's a joke!</p>
             </div>
+
+            <div id="digital-clock"></div>
+    
+    <canvas id="analog-clock" width="150" height="150" style="background-color:purple"></canvas>
+    <script src="https://waph-uc.github.io/clock.js"></script>
+    
         </div>
         
         <div id="page1" class="page active">
             <h2>About Me</h2>
-            <p>My name is Salma Mohammad. I am currently a junior Computer Science student at University of Cincinnati. You can contact me at mohamms4@mail.uc.edu. You can see my resume below. </p>
-            <img src="headshot.jpg" width="200" height="200" style="display: block; margin: 0 auto;">
-            <p style="text-align: center;"> enter resume </p>
+             <p>My name is Salma Mohammad. I am currently a junior Computer Science student at University of Cincinnati. You can contact me at mohamms4@mail.uc.edu. You can download my resume below for more information about my experiences and skills. </p>
+             <img src="headshot.jpg" width="200" height="200" style="display: block; margin: 0 auto;">
+         <div style="text-align: center;">
+             <a href="Salma Resume_Feb2024.pdf" target="_blank">Download Salma's Resume</a>
+          </div>
         </div>
+
         <div id="page2" class="page">
             <h2>Page 2 Content</h2>
             <p>This is the content of page 2.</p>
