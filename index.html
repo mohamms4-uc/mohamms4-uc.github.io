@@ -18,6 +18,7 @@ crossorigin="anonymous"></script>
             line-height: 26px;
             background-color: #000000;
             color: white;
+            padding-right: 360px;
         }
 
         .container {
@@ -103,6 +104,9 @@ crossorigin="anonymous"></script>
                 margin-bottom: 10px;
                 position: relative;
             }
+            body{
+                padding-right: 20px;
+            }
         }
     </style>
 </head>
@@ -116,6 +120,25 @@ crossorigin="anonymous"></script>
             <div class="menuitem" onclick="showPage('page2')">Task 2</div>
             <div class="menuitem" onclick="showPage('page3')">Task 3</div>
         </div>
+
+<script>
+    // Draw out clock and clock hands
+    
+    var canvas = document.getElementById("analog-clock");
+    var ctx = canvas.getContext("2d");
+    var radius = canvas.height/2;
+    ctx.translate(radius,radius);
+    radius=radius*0.90
+    setInterval(drawClock, 1000);
+
+    function drawClock()
+    {
+        drawFace(ctx,radius);
+        drawNumbers(ctx,radius);
+        drawTime(ctx,radius);
+    }
+
+</script>
 
 <script>
     // Function to fetch joke from the API
@@ -138,7 +161,15 @@ crossorigin="anonymous"></script>
 </script>
 
 
-        <div id="sidebar">
+    <div id="sidebar">
+
+         <style>
+            #sidebar {
+                right: 30px; /* Adjusted */
+                /* Remaining styles unchanged */
+            }
+        </style>
+            
             <h2>Here's a joke for your visit!</h2>
             <div id="jokeSection">
                 <p>Here's a joke!</p>
