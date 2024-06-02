@@ -214,12 +214,18 @@ crossorigin="anonymous"></script>
             .then(response => response.json())
             .then(data => {
                 // Extract relevant weather information
-                const { temp, weather } = data.data[0];
+                 const { temp, weather, humidity, wind_spd, cloudcover } = data.data[0];
 
                 // Display weather information
                 document.getElementById("weather").innerHTML = `
-                    <p>Temperature: ${temp}°C</p>
+
+                    <p>Location: ${city_name}, ${country_code}</p>
+                    <p>Temperature: ${tempFahrenheit.toFixed(2)}°F</p>
                     <p>Weather: ${weather.description}</p>
+                    <p>Humidity: ${humidity}%</p>
+                    <p>Wind Speed: ${wind_spd} m/s</p>
+                    <p>Cloud Cover: ${cloudcover}%</p>
+                    <img src="${iconUrl}" alt="Weather Icon">
                 `;
             })
             .catch(error => {
