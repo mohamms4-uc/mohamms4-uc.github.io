@@ -192,11 +192,11 @@ crossorigin="anonymous"></script>
         const apiKey = "bd12cddefc674579a2209b655daba07a";
 
         // Latitude and Longitude of your location
-        const lat = "35.7796";
-        const lon = "-78.6382";
+        const lat = "39.1031";
+        const lon = "84.5120";
 
         // Fetch weather data
-        fetch("https://api.weatherbit.io/v2.0/current?lat=35.7796&lon=-78.6382&key=bd12cddefc674579a2209b655daba07a&include=minutely")
+        fetch("https://api.weatherbit.io/v2.0/current?lat=39.1031&lon=84.5120&key=bd12cddefc674579a2209b655daba07a&include=minutely")
             .then(response => response.json())
             .then(data => {
                 // Extract relevant weather information
