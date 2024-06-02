@@ -14,7 +14,7 @@
         }
 
         .container {
-            min-width: 900px; /* Corrected typo */
+            min-width: 900px;
         }
 
         .wrapper {
@@ -65,7 +65,7 @@
             cursor: pointer;
         }
 
-        .menuitem:nth-child(4) {
+        .menuitem.active {
             color: white;
             font-weight: bold;
         }
@@ -82,6 +82,14 @@
             color: #84c754;
         }
 
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
         @media (max-width: 600px) {
             #sidebar {
                 width: auto;
@@ -95,18 +103,50 @@
     <div id="top">
         <h1>Welcome to Salma's WAPH Project 1</h1>
     </div>
-    <div id="main">
-        <h2>Main Content</h2>
-        <p>Content goes here.</p>
-        <div class="menuitem">Task 1</div>
-        <div class="menuitem">Task 2</div>
-        <div class="menuitem">Task 3</div>
-    </div>
-    <div id="sidebar">
-        <p>This is for a project</p>
+    <div class="container">
+        <div id="main">
+            <div class="menuitem" onclick="showPage('page1')">Task 1</div>
+            <div class="menuitem" onclick="showPage('page2')">Task 2</div>
+            <div class="menuitem" onclick="showPage('page3')">Task 3</div>
+        </div>
+        <div id="sidebar">
+            <p>This is for a project</p>
+        </div>
+        <div id="page1" class="page active">
+            <h2>Page 1 Content</h2>
+            <p>This is the content of page 1.</p>
+        </div>
+        <div id="page2" class="page">
+            <h2>Page 2 Content</h2>
+            <p>This is the content of page 2.</p>
+        </div>
+        <div id="page3" class="page">
+            <h2>Page 3 Content</h2>
+            <p>This is the content of page 3.</p>
+        </div>
     </div>
     <div id="bottom">
         <p>Footer Content</p>
     </div>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            var pages = document.getElementsByClassName('page');
+            for (var i = 0; i < pages.length; i++) {
+                pages[i].classList.remove('active');
+            }
+
+            // Show the selected page
+            document.getElementById(pageId).classList.add('active');
+
+            // Mark the selected menu item as active
+            var menuItems = document.getElementsByClassName('menuitem');
+            for (var i = 0; i < menuItems.length; i++) {
+                menuItems[i].classList.remove('active');
+            }
+            document.querySelector('.menuitem[data-page="' + pageId + '"]').classList.add('active');
+        }
+    </script>
 </body>
 </html>
