@@ -108,15 +108,21 @@ crossorigin="anonymous"></script>
 
 <script>
     // Function to fetch joke from the API
-    function fetchJoke() {
-        $.get("https://v2.jokeapi.dev/joke/PRogramming?type=single", function(result){
-            $("#jokeSection").html("<p>" + result.joke + "</p>");
-        });
-    }
-    // Call the function to fetch the joke when the page loads
-    $(document).ready(function() {
-        fetchJoke();
+function fetchJoke() {
+    $.get("https://v2.jokeapi.dev/joke/PRogramming?type=single", function(result){
+        $("#jokeSection").html("<p>" + result.joke + "</p>");
     });
+}
+
+// Call the function to fetch the joke when the page loads
+$(document).ready(function() {
+    fetchJoke(); // Initial call when the page loads
+
+    // Call fetchJoke every minute (60,000 milliseconds)
+    setInterval(fetchJoke, 60000);
+});
+
+    
      function displayTime(){
             document.getElementById('digital-clock').innerHTML = "Current time: " + new Date();
         }
