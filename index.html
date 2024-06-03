@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-    
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"
-integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-crossorigin="anonymous"></script>
-    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Salma's WAPH Project 1</title>
-     <link rel="stylesheet" type="text/css" href="https://www.w3schools.com/css/demo_default.css">
+    <link rel="stylesheet" type="text/css" href="https://www.w3schools.com/css/demo_default.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+        crossorigin="anonymous"></script>
     <style>
         /* Stylesheet 4: */
         body {
@@ -96,7 +94,88 @@ crossorigin="anonymous"></script>
     </style>
 </head>
 <body>
-   <script>
+    <div id="top">
+        <h1>Welcome to Salma's WAPH Project 1</h1>
+    </div>
+    <div class="container">
+        <div id="main">
+            <div class="menuitem" onclick="showPage('page1')">About Me</div>
+            <div class="menuitem" onclick="showPage('page2')">User Data</div>
+            <div class="menuitem" onclick="showPage('page3')">Task 3</div>
+        </div>
+
+        <div id="sidebar">
+            <h2>Here's a joke for your visit!</h2>
+            <div id="jokeSection"></div>
+
+            <h2>Some data for you!</h2>
+            <div id="digital-clock" style="color:lightgreen"></div>
+            <canvas id="analog-clock" width="150" height="150" style="background-color: lightgreen; color: white;"></canvas>
+            <script src="https://waph-uc.github.io/clock.js"></script>
+
+            <h3>Weather API Information</h3>
+            <div id="weather"></div>
+            <a href="https://www.weatherbit.io/api/weather-current" target="_blank"> Weatherbit API Citation</a>
+
+            <style>
+                #weather {
+                    background-color: lightblue;
+                    padding: 10px;
+                    border-radius: 10px;
+                    margin-top: 20px;
+                }
+                #weather p {
+                    font-size: 16px;
+                    margin: 5px 0;
+                }
+            </style>
+        </div>
+
+        <div id="page1" class="page active">
+            <h2>About Me</h2>
+            <p>My name is Salma Mohammad. I am currently a junior Computer Science student at University of Cincinnati. You can contact me <span id="email" onclick="showhideEmail()" style="color: lightgreen; text-decoration: underline;">here!</span></p>
+            <script src="email.js"></script>
+            <p>You can download my resume below for more information about my experiences and skills.</p>
+            <img src="headshot.jpg" width="200" height="200" style="display: block; margin: 0 auto;">
+            <div style="text-align: center;">
+                <a href="Salma Resume_Feb2024.pdf" target="_blank">Download Salma's Resume</a>
+            </div>
+        </div>
+
+        <div id="page2" class="page">
+            <h2>User Data</h2>
+            <p>This page will track all the visitors and where they're from using a flag counter. It'll also let you know the last time you visited!</p>
+            <p id="welcomeMessage"></p>
+            <a href="http://s11.flagcounter.com/more/c1g"><img src="https://s11.flagcounter.com/count/c1g/bg_16F516/txt_000000/border_0B7012/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
+        </div>
+
+        <div id="page3" class="page">
+            <h2>Page 3 Content</h2>
+            <p>This is the content of page 3.</p>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            var pages = document.getElementsByClassName('page');
+            for (var i = 0; i < pages.length; i++) {
+                pages[i].classList.remove('active');
+            }
+            // Show the selected page
+            document.getElementById(pageId).classList.add('active');
+            // Mark the selected menu item as active
+            var menuItems = document.getElementsByClassName('menuitem');
+            for (var i = 0; i < menuItems.length; i++) {
+                menuItems[i].classList.remove('active');
+            }
+            // Mark the clicked menu item as active
+            var menuItem = document.querySelector(`.menuitem[onclick="showPage('${pageId}')"]`);
+            if (menuItem) {
+                menuItem.classList.add('active');
+            }
+        }
+
         // Function to set a cookie
         function setCookie(name, value, days) {
             var expires = "";
@@ -143,162 +222,54 @@ crossorigin="anonymous"></script>
 
         // Call the function to check visit
         checkVisit();
-    </script>
-    
-    <div id="top">
-        <h1>Welcome to Salma's WAPH Project 1</h1>
-    </div>
-    <div class="container">
-        <div id="main">
-            <div class="menuitem" onclick="showPage('page1')">About Me</div>
-            <div class="menuitem" onclick="showPage('page2')">User Data</div>
-            <div class="menuitem" onclick="showPage('page3')">Task 3</div>
-        </div>
 
-<script>
-        function showPage(pageId) {
-            // Hide all pages
-            var pages = document.getElementsByClassName('page');
-            for (var i = 0; i < pages.length; i++) {
-                pages[i].classList.remove('active');
-            }
-            // Show the selected page
-            document.getElementById(pageId).classList.add('active');
-            // Mark the selected menu item as active
-            var menuItems = document.getElementsByClassName('menuitem');
-            for (var i = 0; i < menuItems.length; i++) {
-                menuItems[i].classList.remove('active');
-            }
-            // Mark the clicked menu item as active
-            var menuItem = document.querySelector(`.menuitem[onclick="showPage('${pageId}')"]`);
-            if (menuItem) {
-                menuItem.classList.add('active');
-            }
+        // Function to fetch joke from the API
+        function fetchJoke() {
+            $.get("https://v2.jokeapi.dev/joke/Programming?type=single", function(result){
+                $("#jokeSection").html("<p>" + result.joke + "</p>");
+            });
         }
-    </script>
-        
 
-<script>
-    // Function to fetch joke from the API
-function fetchJoke() {
-    $.get("https://v2.jokeapi.dev/joke/PRogramming?type=single", function(result){
-        $("#jokeSection").html("<p>" + result.joke + "</p>");
-    });
-}
+        // Call the function to fetch the joke when the page loads
+        $(document).ready(function() {
+            fetchJoke(); // Initial call when the page loads
 
-// Call the function to fetch the joke when the page loads
-$(document).ready(function() {
-    fetchJoke(); // Initial call when the page loads
+            // Call fetchJoke every minute (60,000 milliseconds)
+            setInterval(fetchJoke, 60000);
 
-    // Call fetchJoke every minute (60,000 milliseconds)
-    setInterval(fetchJoke, 60000);
-});
+            displayTime();
+            setInterval(displayTime, 500);
 
-    
-     function displayTime(){
-            document.getElementById('digital-clock').innerHTML = "Current time: " + new Date();
-        }
-        setInterval(displayTime, 500);
-    
-</script>
-    <div id="sidebar">
-         <style>
-            #sidebar {
-                right: 30px; /* Adjusted */
-                /* Remaining styles unchanged */
+            // Draw clock hands
+            var canvas = document.getElementById("analog-clock");
+            var ctx = canvas.getContext("2d");
+            var radius = canvas.height / 2;
+            ctx.translate(radius, radius);
+            radius = radius * 0.90;
+            setInterval(drawClock, 1000);
+
+            function drawClock() {
+                drawFace(ctx, radius);
+                drawNumbers(ctx, radius);
+                drawTime(ctx, radius);
             }
-        </style>
-            
-            <h2>Here's a joke for your visit!</h2>
-            <div id="jokeSection"></div>
 
-            <h2>Some data for you!</h2>
-            <div id="digital-clock" style="color:lightgreen"></div>
-           <canvas id="analog-clock" width="150" height="150" style="background-color: lightgreen; color: white;"></canvas>
-           <script src="https://waph-uc.github.io/clock.js"></script>
+            function displayTime() {
+                document.getElementById('digital-clock').innerHTML = "Current time: " + new Date();
+            }
+        });
 
-        <h3>Weather API Information</h3>
-          <div id="weather"></div>
-         <a href="https://www.weatherbit.io/api/weather-current" target="_blank"> Weatherbit API Citation</a>
-        
-    <style>
-        #weather {
-            background-color: lightblue;
-            padding: 10px;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-        #weather p {
-            font-size: 16px;
-            margin: 5px 0;
-        }
-    </style>
-            
-    
-<script>
-    // Draw out clock and clock hands
-    
-    var canvas = document.getElementById("analog-clock");
-    var ctx = canvas.getContext("2d");
-    var radius = canvas.height/2;
-    ctx.translate(radius,radius);
-    radius=radius*0.90
-    setInterval(drawClock, 1000);
-    
-    function drawClock()
-    {
-        drawFace(ctx,radius);
-        drawNumbers(ctx,radius);
-        drawTime(ctx,radius);
-    }
-</script>
-
-        </div>
-
-        <div id="page1" class="page active">
-            <h2>About Me</h2>
-
-                <p>My name is Salma Mohammad. I am currently a junior Computer Science student at University of Cincinnati. You can contact me <span id="email" onclick="showhideEmail()" style="color: lightgreen; text-decoration: underline;">here!</span></p>
-                <script src="email.js"></script>
-
-                <p>You can download my resume below for more information about my experiences and skills.</p>
-                <img src="headshot.jpg" width="200" height="200" style="display: block; margin: 0 auto;">
-            
-            <div style="text-align: center;">
-                <a href="Salma Resume_Feb2024.pdf" target="_blank">Download Salma's Resume</a>
-            </div>
-        </div>
-        <div id="page2" class="page">
-            <h2>User Data</h2>
-            <p>This page will track all the visitors and where they're from using a flag counter. It'll also let you know the last time you visited!</p>
-            <p id="welcomeMessage"></p>
-            <a href="http://s11.flagcounter.com/more/c1g"><img src="https://s11.flagcounter.com/count/c1g/bg_16F516/txt_000000/border_0B7012/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
-        </div>
-        <div id="page3" class="page">
-            <h2>Page 3 Content</h2>
-            <p>This is the content of page 3.</p>
-        </div>
-    </div>
-
-  <script>
-        // Your Weatherbit API key
+        // Weather API logic
         const apiKey = "bd12cddefc674579a2209b655daba07a";
 
-        // Function to fetch weather data
         function fetchWeather(lat, lon) {
             fetch(`https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lon}&key=${apiKey}&include=minutely`)
                 .then(response => response.json())
                 .then(data => {
-                    // Extract relevant weather information
                     const { temp, weather, humidity, wind_spd, cloudcover, city_name, country_code } = data.data[0];
-                    
-                    // Convert temperature to Fahrenheit
-                    const tempFahrenheit = (temp * 9/5) + 32;
-                    
-                    // Get the weather icon URL based on the weather description
+                    const tempFahrenheit = (temp * 9 / 5) + 32;
                     const iconUrl = `https://www.weatherbit.io/static/img/icons/${weather.icon}.png`;
 
-                    // Display weather information
                     document.getElementById("weather").innerHTML = `
                         <p>Location: ${city_name}, ${country_code}</p>
                         <p>Temperature: ${tempFahrenheit.toFixed(2)}°F</p>
@@ -312,7 +283,6 @@ $(document).ready(function() {
                 });
         }
 
-        // Check if Geolocation is available
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(position => {
                 const lat = position.coords.latitude;
