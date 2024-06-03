@@ -9,6 +9,7 @@ crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Salma's WAPH Project 1</title>
+    <h2 id="welcomeMessage"></h2>
      <link rel="stylesheet" type="text/css" href="https://www.w3schools.com/css/demo_default.css">
     <style>
         /* Stylesheet 4: */
@@ -96,6 +97,55 @@ crossorigin="anonymous"></script>
     </style>
 </head>
 <body>
+   <script>
+        // Function to set a cookie
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+
+        // Function to get a cookie
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        // Function to check for first time visit or return visit
+        function checkVisit() {
+            var lastVisit = getCookie("lastVisit");
+            var message = "";
+
+            if (lastVisit == null) {
+                // First time visit
+                message = "Welcome to my homepage for the first time!";
+            } else {
+                // Return visit
+                message = "Welcome back! Your last visit was " + lastVisit;
+            }
+
+            // Set the welcome message
+            document.getElementById("welcomeMessage").innerText = message;
+
+            // Set a new cookie with the current date and time
+            var now = new Date();
+            setCookie("lastVisit", now.toString(), 365);
+        }
+
+        // Call the function to check visit
+        checkVisit();
+    </script>
+    
     <div id="top">
         <h1>Welcome to Salma's WAPH Project 1</h1>
     </div>
