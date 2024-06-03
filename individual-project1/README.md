@@ -51,4 +51,5 @@ The website can track if you're a returning visitor and also documents the last 
 1. My report (this document)
 2. Deployed website printed from a browser in PDF: [Download deployed-website.pdf](deployed-website.pdf)
 3. Source code of deployed website printed from a browser in PDF: [Download source-code.pdf](source-code.pdf)
-**I made a second source code pdf using pandoc, as I believe this would be easier to see:**[Download source.pdf](source.pdf)
+
+**I made a second source code pdf using pandoc, as I believe this would be easier to see:** [Download source.pdf](source.pdf)
