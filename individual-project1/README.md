@@ -16,7 +16,7 @@
 
 Respository's URL: https://github.com/mohamms4-uc/mohamms4-uc.github.io/tree/main/individual-project1
 
-Link to hosted website: https://mohamms4-uc.github.io/index.html
+Link to hosted website: https://mohamms4-uc.github.io/individual-project1/index.html
 
 This is a public repository hosted on github.io for Project 1. The organization of this repository is as follows.
 
