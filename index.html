@@ -107,6 +107,29 @@ crossorigin="anonymous"></script>
         </div>
 
 <script>
+        function showPage(pageId) {
+            // Hide all pages
+            var pages = document.getElementsByClassName('page');
+            for (var i = 0; i < pages.length; i++) {
+                pages[i].classList.remove('active');
+            }
+            // Show the selected page
+            document.getElementById(pageId).classList.add('active');
+            // Mark the selected menu item as active
+            var menuItems = document.getElementsByClassName('menuitem');
+            for (var i = 0; i < menuItems.length; i++) {
+                menuItems[i].classList.remove('active');
+            }
+            // Mark the clicked menu item as active
+            var menuItem = document.querySelector(`.menuitem[onclick="showPage('${pageId}')"]`);
+            if (menuItem) {
+                menuItem.classList.add('active');
+            }
+        }
+    </script>
+        
+
+<script>
     // Function to fetch joke from the API
 function fetchJoke() {
     $.get("https://v2.jokeapi.dev/joke/PRogramming?type=single", function(result){
