@@ -50,6 +50,392 @@ The website can track if you're a returning visitor and also documents the last 
 ## Extra Documentation
 1. My report (this document)
 2. Deployed website printed from a browser in PDF: [Download deployed-website.pdf](deployed-website.pdf)
-3. Source code of deployed website printed from a browser in PDF: [Download source-code.pdf](source-code.pdf)
+**I made another pdf version using pandoc, as I believe this would be easier to see:** [Download source.pdf](source.pdf)
+4. Source code of deployed website printed from a browser in PDF: [Download source-code.pdf](source-code.pdf)
 
-**I made a second source code pdf using pandoc, as I believe this would be easier to see:** [Download source.pdf](source.pdf)
+## Source Code
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Salma's WAPH Project 1</title>
+    <link rel="stylesheet" type="text/css" href="https://www.w3schools.com/css/demo_default.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+        crossorigin="anonymous"></script>
+    <style>
+        /* Stylesheet 4: */
+        body {
+            font: 100% Courier New;
+            margin: 20px;
+            line-height: 26px;
+            background-color: #000000;
+            color: white;
+            padding-right: 360px;
+        }
+        .container {
+            margin-right: 100px;
+        }
+        .wrapper {
+            position: relative;
+            overflow: auto;
+        }
+/*         #page1, #page2, #page3 {
+        margin-right: 400px;
+        } */
+        #top {
+            color: #84c754;
+            padding: 10px;
+        }
+        #main {
+            padding: 10px;
+            color: #84c754;
+        }
+        #sidebar {
+            color: #ffffff;
+            border: 1px solid #ffffff;
+            border-radius: 10px;
+            padding: 10px;
+            width: 320px;
+            top: 50px;
+            right: 50px;
+            position: absolute;
+            font-size: 80%;
+            line-height: 20px;
+        }
+        #bottom {
+            border: 1px solid #ffffff;
+            border-radius: 4px;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px;
+            font-size: 70%;
+            line-height: 14px;
+        }
+        #top h1,
+        #top p {
+            margin: 0;
+        }
+        .menuitem {
+            color: #84c754;
+            cursor: pointer;
+        }
+        .menuitem.active {
+            color: white;
+            font-weight: bold;
+        }
+        .menuitem:hover {
+            color: #ffffff;
+        }
+        a {
+            color: #ffffff;
+        }
+        a:hover {
+            color: #84c754;
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+        #welcomeMessage {
+            padding: 5px;
+            color: white;
+            padding-right: 20px;
+        }
+        @media (max-width: 600px) {
+            #sidebar {
+                width: auto;
+                margin-bottom: 10px;
+                position: relative;
+            }
+            body{
+                padding-right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="top">
+        <h1>Web Programming & Hacking Project 1</h1>
+        <p id="welcomeMessage"></p>
+    </div>
+    <div class="container">
+        <div id="main">
+            <div class="menuitem" onclick="showPage('page1')">About Me</div>
+            <div class="menuitem" onclick="showPage('page2')">User Data</div>
+            <div class="menuitem" onclick="showPage('page3')">More about WAPH</div>
+        </div>
+
+        <div id="sidebar">
+            <h2>Here's a joke for your visit!</h2>
+            <div id="jokeSection"></div>
+            <a href="https://v2.jokeapi.dev" style="display: block; padding-top: 5px; text-decoration: underline;"> Disclaimer! This is not my API. Click me for the JokeAPI Citation </a>
+
+
+            <h2>Some data for you!</h2>
+            <div id="digital-clock" style="color:lightgreen"></div>
+            <canvas id="analog-clock" width="150" height="150" style="background-color: lightgreen; color: white; "></canvas>
+            <script src="https://waph-uc.github.io/clock.js"></script>
+            <a href="https://waph-uc.github.io/clock.js" style="display: block; padding-top: 5px; text-decoration: underline;"> Disclaimer! This is not my API. Click me for the Clock Citation </a>
+
+            <h3>Weather API Information</h3>
+            <div id="weather"></div>
+            <a href="https://www.weatherbit.io/api/weather-current" style="display: block; padding-top: 5px; text-decoration: underline;"> Disclaimer! This is not my API. Click me for the Weatherbit API Citation</a>
+
+            <style>
+                #weather {
+                    background-color: lightblue;
+                    padding: 10px;
+                    border-radius: 10px;
+                    margin-top: 20px;
+                }
+                #weather p {
+                    font-size: 16px;
+                    margin: 5px 0;
+                }
+            </style>
+        </div>
+
+        <div id="page1" class="page active">
+            <h2>About Me</h2>
+            <p>My name is Salma Mohammad. I am currently a junior Computer Science student at University of Cincinnati. You can contact me <span id="email" onclick="showhideEmail()" style="color: lightgreen; text-decoration: underline;">here!</span></p>
+            <script src="email.js"></script>
+
+            <h3>EDUCATION</h3>
+        <p><strong>University of Cincinnati, UC</strong><br>
+        Bachelor of Science in Computer Science<br>
+        August 2022 – Present<br>
+        GPA: 3.81</p>
+        
+        <h3>SKILLS</h3>
+        <ul>
+            <li>AutoDesk Inventor</li>
+            <li>Creo Parametric 4.0</li>
+            <li>3D Printer</li>
+            <li>Laser Printer</li>
+            <li>Machine Lathe</li>
+            <li>Assembly Lines</li>
+            <li>Microsoft Word</li>
+            <li>Microsoft PowerPoint</li>
+            <li>Grant Writing</li>
+            <li>Microsoft Excel</li>
+            <li>C / C++</li>
+            <li>Manual Mill</li>
+            <li>Python</li>
+            <li>HURCO CNC Mill</li>
+        </ul>
+        
+        <h3>EXPERIENCE</h3>
+        <p><strong>Scholastic Art and Writing National Students Poetry Program</strong><br>
+        July 2019 – August 2020<br>
+        <ul>
+            <li>Communicated workshop development to scholastic and reported areas of development to further enhance their workshop objectives</li>
+            <li>Networked with multiple poets who recognized my work: 2020 U.S. Poet Laureate, Joy Harjo, 2019 Senator Mike Braun and Todd Young, 2019 Indiana Poet Laureate Adrian Matejka, Nationally recognized poet from Purdue, Kaveh Akbar, etc.</li>
+        </ul></p>
+
+        <p><strong>Scholastic National Student Poetry Alumni Grant</strong><br>
+        January 2019, January 2022<br>
+        <ul>
+            <li>Applied for and received $1,000 funding to develop a community outreach project</li>
+            <li>Developed and initiated a community workshop by managing the received funding</li>
+        </ul></p>
+
+        <p><strong>BEST Robotics Competition – 2 separate years</strong><br>
+        Spring 2018, Fall 2019<br>
+        Project Manager<br>
+        <ul>
+            <li>Instructed and managed a team of 16 students to design, build, and compete in the 2019 BEST robot competition while placing top 16 nationally</li>
+            <li>Implemented and headed a management pyramid that would meet weekly, consult on the pros and cons of the project, and adapt a more effective ethic</li>
+            <li>Designed and sketched CAD models for robot build using AutoDesk to fit competition criteria then proceeded to physically create such CAD models using machine skills</li>
+        </ul></p>
+
+        <p><strong>Youth As Resources Community Grant</strong><br>
+        December 2015 – 2016<br>
+        <ul>
+            <li>Wrote, presented, and was awarded a community grant for $1,000</li>
+            <li>Budgeted and managed fund usage via Excel and approved through YAR board</li>
+            <li>Partnered with local group, Good Samaritan, to use grant to educate children on importance of wellness</li>
+        </ul></p>
+
+        <h3>HONORS</h3>
+        <ul>
+            <li>Scholastic Art and Writing National Student Poet Program Winner (July 2019 – August 2020)</li>
+            <li>IUPUI Chancellor's Scholarship Recipient (August 2020 – May 2024)</li>
+            <li>Urban STEM Scholarship Recipient (August 2020 – May 2024)</li>
+            <li>Commitment to Engineering Excellence Recipient (January 2020 – May 2024)</li>
+            <li>VEX Robotics Top 16 National Qualifier (January 2020)</li>
+        </ul>
+
+
+
+            
+            <p>You can download my resume below for more information about my experiences and skills.</p>
+            <img src="headshot.jpg" width="200" height="200" style="display: block; margin: 0 auto;">
+            <div style="text-align: center;">
+                <a href="Salma Resume_Feb2024.pdf" target="_blank" style="color: lightgreen; text-decoration: underline;">Download Salma's Resume</a>
+            </div>
+        </div>
+
+        <div id="page2" class="page">
+            <h2>User Data</h2>
+            <p>This page will track all the visitors and where they're from using a flag counter. </p>
+            <a href="http://s11.flagcounter.com/more/c1g"><img src="https://s11.flagcounter.com/count/c1g/bg_16F516/txt_000000/border_0B7012/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
+        </div>
+
+        <div id="page3" class="page">
+            <h2>More about WAPH</h2>
+            <p>I am currently taking the class Web Application Programming and Hacking as one of my course electives. This class teaches us how to build secure websites using Javascript. This webpage is an example of one of them!</p>
+            <p>Click here to learn more about WAPH:</p>
+               <a href="https://mohamms4-uc.github.io/individual-project1/waph.html" style="color: lightgreen; text-decoration: underline;">WAPH Class Description</a>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            var pages = document.getElementsByClassName('page');
+            for (var i = 0; i < pages.length; i++) {
+                pages[i].classList.remove('active');
+            }
+            // Show the selected page
+            document.getElementById(pageId).classList.add('active');
+            // Mark the selected menu item as active
+            var menuItems = document.getElementsByClassName('menuitem');
+            for (var i = 0; i < menuItems.length; i++) {
+                menuItems[i].classList.remove('active');
+            }
+            // Mark the clicked menu item as active
+            var menuItem = document.querySelector(`.menuitem[onclick="showPage('${pageId}')"]`);
+            if (menuItem) {
+                menuItem.classList.add('active');
+            }
+        }
+
+        // Function to set a cookie
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+
+        // Function to get a cookie
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        // Function to check for first time visit or return visit
+        function checkVisit() {
+            var lastVisit = getCookie("lastVisit");
+            var message = "";
+
+            if (lastVisit == null) {
+                // First time visit
+                message = "Welcome to my homepage for the first time!";
+            } else {
+                // Return visit
+                message = "Welcome back! Your last visit was " + lastVisit;
+            }
+
+            // Set the welcome message
+            document.getElementById("welcomeMessage").innerText = message;
+
+            // Set a new cookie with the current date and time
+            var now = new Date();
+            setCookie("lastVisit", now.toString(), 365);
+        }
+
+        // Call the function to check visit
+        checkVisit();
+
+        // Function to fetch joke from the API
+        function fetchJoke() {
+            $.get("https://v2.jokeapi.dev/joke/Programming?type=single", function(result){
+                $("#jokeSection").html("<p>" + result.joke + "</p>");
+            });
+        }
+
+        // Call the function to fetch the joke when the page loads
+        $(document).ready(function() {
+            fetchJoke(); // Initial call when the page loads
+
+            // Call fetchJoke every minute (60,000 milliseconds)
+            setInterval(fetchJoke, 60000);
+
+            displayTime();
+            setInterval(displayTime, 500);
+
+            // Draw clock hands
+            var canvas = document.getElementById("analog-clock");
+            var ctx = canvas.getContext("2d");
+            var radius = canvas.height / 2;
+            ctx.translate(radius, radius);
+            radius = radius * 0.90;
+            setInterval(drawClock, 1000);
+
+            function drawClock() {
+                drawFace(ctx, radius);
+                drawNumbers(ctx, radius);
+                drawTime(ctx, radius);
+            }
+
+            function displayTime() {
+                document.getElementById('digital-clock').innerHTML = "Current time: " + new Date();
+            }
+        });
+
+        // Weather API logic
+        const apiKey = "bd12cddefc674579a2209b655daba07a";
+
+        function fetchWeather(lat, lon) {
+            fetch(`https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lon}&key=${apiKey}&include=minutely`)
+                .then(response => response.json())
+                .then(data => {
+                    const { temp, weather, humidity, wind_spd, cloudcover, city_name, country_code } = data.data[0];
+                    const tempFahrenheit = (temp * 9 / 5) + 32;
+                    const iconUrl = `https://www.weatherbit.io/static/img/icons/${weather.icon}.png`;
+
+                    document.getElementById("weather").innerHTML = `
+                        <p>Location: ${city_name}, ${country_code}</p>
+                        <p>Temperature: ${tempFahrenheit.toFixed(2)}°F</p>
+                        <p>Weather: ${weather.description}</p>
+                        <p>Wind Speed: ${wind_spd} m/s</p>
+                        <img src="${iconUrl}" alt="Weather Icon">
+                    `;
+                })
+                .catch(error => {
+                    console.error("Error fetching weather data: You must accept geolocation for weather app to work", error);
+                });
+        }
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position => {
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+                fetchWeather(lat, lon);
+            }, error => {
+                console.error("Error getting geolocation:", error);
+                document.getElementById("weather").innerHTML = "Unable to retrieve your location.";
+            });
+        } else {
+            document.getElementById("weather").innerHTML = "Geolocation is not supported by your browser.";
+        }
+    </script>
+</body>
+</html>
+```
